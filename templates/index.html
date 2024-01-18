@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+Homepage
+{% endblock %}
+
+{% block body %}
+
+{% if messages %}
+    <center>
+        <ul class="messages" style="background-color: grey; height:60px">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message}}
+                <span class="close-message" style="padding-left: 40px;color:red; cursor: pointer; font-size: 40px;" onclick="dismissMessage(this)">×</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </center>
+{% endif %}
+    
+<div class="container" style="text-align: center;">
+    <h1 >Welcome {{user}}</h1>
+    <p>Make your List of Activity using our calender</p>
+</div>
+<div class="container mt-xl-5">
+    <center>
+        {{year|safe}}
+    </center>
+
+</div>
+<div class="form-group container" id="form" style="display: none;">
+    <h1>hello</h1>
+</div>
+
+
+<script>
+
+    const td = document.querySelectorAll("td.mon,td.tue,td.wed,td.thu,td.fri,td.sat,td.sun")
+    const id = document.getElementById("exampleModal")
+    td.forEach(e => {
+        e.addEventListener('click', (a) => {          
+            let day = e.innerHTML;
+            let month = e.parentElement.parentElement.firstChild.textContent;
+            localStorage.setItem('day', day)
+            localStorage.setItem('month', month)
+            window.location.href = "posts"
+            
+        })
+    })
+    
+    function dismissMessage(element) {
+        var messageElement = element.parentElement.parentElement;
+        messageElement.style.display = 'none';
+    }
+
+
+
+</script>
+{% endblock %}

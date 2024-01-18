@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}
+  signup
+{% endblock %}
+{% block body %}
+<div class="container">
+            
+    <form action="signup" method="post">
+        <div class="col position-relative">
+            <center>
+                {% csrf_token %}
+                <div class="container border border-primary w-50 mt-xl-5 pt-4">
+                    <h1 class="text-center text-capitalize text-primary">Sign Up</h1>
+                    <div class="col w-50 text-left">
+                        <label for="first">Enter your First Name: </label>
+                      <input type="text" class="form-control" name="fname" id="first" placeholder="First name" aria-label="First name" required>
+                    </div>
+                    <div class="col w-50 text-left">
+                        <label for="last">Enter your Last Name: </label>
+                      <input type="text" class="form-control" name="lname" id="last" placeholder="Last name" aria-label="Last name" required>
+                    </div>
+                    <div class="col w-50 text-left">
+                        <label for="email">Enter your Email Address </label>
+                      <input type="email" class="form-control" name="email" id="email-input" placeholder="email@gmail.com" aria-label="Last name" required>
+                      <div id="suggestion-box" style="display: none;"></div>
+                    </div>
+                    {% csrf_token %}
+                    <div class="col w-50 text-left">
+                        <label for="pass1">Enter your Password </label>
+                      <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Password" aria-label="Last name"  required>
+                      <input type="checkbox" onclick="clicked1()">
+                    </div>
+                    <div class="col w-50 text-left">
+                        <label for="pass2">Re-enter the Password </label>
+                      <input type="password" class="form-control"  name="pass2"  id="pass2" placeholder="Re-enter Password" aria-label="Last name"  required>
+                      <input type="checkbox" onclick="clicked2()">
+                    </div>
+                    <button class="btn btn-primary mt-3">Submit</button>
+                </div>
+                
+                
+
+            </center>
+            
+        </div>
+          
+            
+    </form>
+    <script>
+      var pass1 = document.getElementById("pass1")
+      var pass2 = document.getElementById("pass2")
+      function clicked1(){
+          
+      if(pass1.type==='password'){
+        pass1.type = 'text'
+      }
+      else{
+        pass1.type = 'password'
+
+      }
+    }
+    function clicked2(){
+      if (pass2.type==='password'){
+          pass2.type = 'text'
+        }
+        else{
+          pass2.type = "password"
+
+      }
+    }
+    </script>
+</div>
+{% endblock %}

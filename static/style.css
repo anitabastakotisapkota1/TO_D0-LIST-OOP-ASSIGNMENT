@@ -1,0 +1,22 @@
+table{
+    margin: 10px;
+}
+.container .items-list-style{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+select,option{
+    cursor: pointer;
+}
+li{
+    list-style-type: none;
+}
+td{
+    
+    cursor: pointer;
+
+}
+.suggestion-box{
+    background-color: red;
+}

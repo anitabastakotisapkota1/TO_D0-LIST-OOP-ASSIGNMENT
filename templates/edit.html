@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+  Field
+{% endblock %}
+{% block body %}
+<div class="container mt-lg-5">
+<form action="{% url 'edit' data.id %}" method="post">
+    <div class="row">
+        <div class="col">
+            <label for="day">Day:</label>
+          <input type="number" id="day" class="form-control" name="Day" placeholder="Day" aria-label="First name" value="{{data.day}}" required>
+        </div>
+        {% csrf_token %}
+        <div class="col">
+            <label for="month">Month:</label>
+          <input type="text" id="month" class="form-control" name="Month" placeholder="Month" aria-label="Last name" value="{{data.month}}" required>
+        </div>
+        
+        
+      </div>
+      <div class="row">
+        <div class="form-floating mt-5">
+            <label for="floatingTextarea2">Write your upcoming event here:</label>
+            <textarea class="form-control" style="text-align: left;" rows="5" id="floatingTextarea2" name="activity" style="height: 100px" required>
+              {{data.activity}}  
+            </textarea>
+            
+            
+          </div>
+    </div>
+   
+    <div class="row" style="margin-top: 30px;">
+      <label for="Completed">Completed:</label>
+      <input type="checkbox" id="Completed" name="completed" 
+      {% if data.completed %}
+        checked
+      {% endif %}
+         >
+  </div>
+      <button type="submit" class="btn btn-primary mt-3">Edit to_do List</button>
+</form>
+
+</div>
+
+{% endblock %}

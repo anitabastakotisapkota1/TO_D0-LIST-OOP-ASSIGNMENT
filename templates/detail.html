@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+Details
+{% endblock %}
+{% block body %}
+<div class="container mt-5">
+  <div class="items-list-style">
+    <div class="filter">
+      <form action="details" method="post">
+        <label for="select">Filter:</label>
+        {% csrf_token %}
+        <select name="select" id="select">
+          <option value="all" selected>All</option>
+          <option value="completed"  {% if request.POST.select == 'completed' or session == 'completed' %}selected{% endif %}>Completed</option>
+          <option value="active"  {% if request.POST.select == 'active' %}selected{% endif %}>Active</option>
+          <option value="due_date"  {% if request.POST.select == 'due_date' or session == 'due_date' %}selected{% endif %}>Has due date</option>
+        </select>
+        <button type="submit">select</button>
+      </form>
+    </div>
+    <div class="Sort">
+      <form action="details" method="post">
+        <label for="sort">Sort:</label>
+        {% csrf_token %}
+        <select name="sort" id="sort">
+          <option value="added" {% if request.POST.sort == 'added' %}selected{% endif %}>Added date</option>
+        <option value="due" {% if request.POST.sort == 'due' %}selected{% endif %}>Due date</option>
+
+        </select>
+        <button type="submit">sort</button>
+      </form>
+    </div>
+  </div>
+  <h1>YOUR SCHEDULE FOR COMING DAYS</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Day</th>
+        <th scope="col">Month</th>
+        <th scope="col">Activity</th>
+        <th scope="col">Status</th>
+        <th scope="col">Edit/Delete</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for d in data %}
+      <tr>
+        <th scope="row">{{d.day}}</th>
+        <td>{{d.month}}</td>
+        <td>{{d.activity}}</td>
+        <td>
+        {% if d.completed %}
+        completed
+        <!-- <i style="font-size: 30px; color: black;" class="fa-solid fa-check"></i> -->
+        {% endif %}
+          </td>
+
+        <td>
+          <a href="{% url 'edit' d.id %}"
+            class="btn btn-primary">Edit</a>
+          <a href="{% url 'delete' d.id %}"
+            class="btn btn-primary">Delete</a>
+        </td>
+
+      </tr>
+      {% endfor %}
+
+    </tbody>
+  </table>
+
+</div>
+
+<script>
+ 
+</script>
+{% endblock %}

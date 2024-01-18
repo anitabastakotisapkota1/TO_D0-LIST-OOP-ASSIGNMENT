@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}
+  Login
+{% endblock %}
+{% block body %}
+            
+<form action="log_in" method="post">
+    <div class="col position-relative">
+        <center>
+            <div class="container border border-primary w-50 mt-xl-5 pt-4">
+                <h1 class="text-center text-capitalize text-primary">Login</h1>
+                {% csrf_token %}
+                
+                <div class="col w-50 text-left">
+                    <label for="email">Enter your Email Address </label>
+                  <input type="text" class="form-control" id="email-input" placeholder="email@gmail.com" aria-label="Last name" name="email">
+                  <div id="suggestion-box" style="display: none;"></div>
+
+                </div>
+                <div class="col w-50 text-left">
+                    <label for="last">Enter your Password </label>
+                  <input type="password" class="form-control" id="pass1" placeholder="Password" aria-label="Last name" name="pass1">
+                </div>
+                
+                <button class="btn btn-primary mt-3">Submit</button>
+            </div>
+            
+            
+
+        </center>
+        
+    </div>
+      
+        
+</form>
+</div>
+{% endblock %}
